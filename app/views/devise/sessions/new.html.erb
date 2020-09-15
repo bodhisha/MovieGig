@@ -12,7 +12,6 @@
       <%= f.label :password %><br />
       <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none block w-full bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-4 leading-tight focus:outline-none focus:bg-white focus:border-primary-500" %>
     </div>
-
     <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
@@ -24,7 +23,7 @@
       <%= f.submit "Log in", class: "btn btn-primary btn-large w-full" %>
     </div>
     <% end %>
-    <div class="mt-4 text-center">
+    <div class="text-center">
       <%= render "devise/shared/links" %>
     </div>
   </div>

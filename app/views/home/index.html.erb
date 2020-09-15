@@ -1,9 +1,4 @@
-  <div class="btn btn-primary">hey</div>
+<% if user_signed_in? %>
+<div class="btn btn-primary"><%=current_user.email%></div>
 
-  <% if user_signed_in? %>
-  <%= button_to destroy_user_session_path, method: :delete, class: "" do %>
-  hey
-  <%end%>
-  <% else %>
-  <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-  <% end %>
+<% end %>

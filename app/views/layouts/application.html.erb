@@ -12,7 +12,32 @@
 </head>
 
 <body>
-  <%= yield %>
+  <div class="MovieGig">
+    <%= render 'layouts/header' %>
+    <% flash.each do |kind, message| %>
+    <% kind = kind.to_sym %>
+    <% background_color = kind == :alert ? 'bg-red-700' : 'bg-primary-600' %>
+    <% icon_color = kind == :alert ? 'text-red-100' : 'text-white' %>
+    <div class="flex items-center justify-center font-semibold text-white text-sm p-4 text-center <%= background_color %>">
+      <% if kind == :alert %>
+      <i class="fas fa-exclamation-triangle text-lg <%= icon_color %>"></i>
+      <% else %>
+      <i class="fas fa-check-circle text-lg <%= icon_color %>"></i>
+      <% end %>
+      <span class="ml-1"><%= message.html_safe %></span>
+    </div>
+    <% end %>
+    <main class="bg-primary-50 pt-4">
+      <div class="max-w-5xl mx-auto p-2">
+        <%= yield %>
+      </div>
+    </main>
+    <footer class="bg-white shadow border-t border-primary-100  w-full px-4 bottom-0 left-0 ">
+      <div class="flex items-center text-center p-2">
+        <i class="animate-pulse fas fa-heart text-primary-600 mr-2"></i> <span class="text-md font-semibold"> Bodhi</span>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>
