@@ -10,6 +10,14 @@ class WatchedMoviesController < ApplicationController
     end
   end
 
+  def destroy
+    watched_movie = current_user.watched_movies.find(params[:id])
+    watched_movie.destroy!
+    movie = watched_movie.movie
+    redirect_to movie_path(movie)
+    flash.alert = "Movie removed from Watched list"
+  end
+
   private
 
   def already_watched?
