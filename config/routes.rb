@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get "home/index"
   root to: "home#index"
 
-  resources :movies, only: [:show]
+  resources :movies, only: [:show] do
+    resources :watched_movies
+  end
   resources :users, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -8,10 +8,19 @@
         <p class="mx-2 text-primary-700 text-base font-semibold ">Genre : <%= @movie.movie_genre %></p>
       </div>
       <div class="flex flex-col ml-64">
-        <%= link_to "Watched", root_path, class: " btn bg-primary-700 btn-primary" %>
+
+        <% already_watched = @movie.watched_movies.find{|watched| watched.user_id == current_user&.id} %>
+        <%if already_watched%>
+        <%= button_to   movie_watched_movies_path(@movie),class:"btn bg-primary-700 w-full btn-primary", method: :delete  do  %>
+        Remove from Watched
+        <%end%>
+        <%else%>
+        <%= button_to   movie_watched_movies_path(@movie), method: :post ,class:"btn w-full bg-primary-700 btn-primary" do  %>
+        Watched
+        <%end%>
+        <%end%>
         <%= link_to "Recommended", root_path, class: "mt-1 btn btn-primary" %>
         <%= link_to "Add to Watch List", root_path, class: "my-1 btn btn-primary" %>
-
       </div>
     </div>
   </div>
