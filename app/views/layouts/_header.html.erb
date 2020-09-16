@@ -19,8 +19,9 @@
           <%= button_to destroy_user_session_path, method: :delete, class: "inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
           <i class="fas fa-sign-out-alt text-xl m-1 text-primary-600"></i>
           <%end%>
-
-
+          <%= link_to user_path(current_user), class: "p-1 inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
+          <i class="fas fa-user-alt text-xl m-1 text-primary-600"></i>
+          <%end%>
 
           <% else %>
           <%= link_to new_user_session_path, class: "p-1 inline-flex items-center text-white px-2 py-1 text-sm font-semibold rounded transition duration-150 ease-in-out hover:bg-gray-100 hover:text-primary-900 focus:bg-gray-100 focus:text-primary-900 text-primary-800" do %>
