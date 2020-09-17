@@ -19,20 +19,36 @@
   </div>
 
   <div class="flex flex-col w-full  justify-center mt-4">
-    <% @user.watched_movies.each do |movie| %>
+    <% @user.watched_movies.each do |watched| %>
     <div class="bg-primary-400  mt-2 rounded shadow p-2">
-      <p class="mx-2 text-primary-700 text-base font-semibold "><%=@user.name %> watched <%= movie.movie_id %> </p>
+      <p class="mx-2 text-primary-700 text-base font-bold "><%=@user.name %> <span class="font-normal">watched</span> <%= watched.movie.movie_name %> </p>
       <div class="flex bg-primary-200 mt-2 py-2 rounded shadow max-w-4xl mx-auto">
         <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-16 w-16  m-4 " ) %>
         <div class="flex-col">
-          <p class="mx-2 text-primary-700 text-base font-semibold ">Movie name <%= @user.email %></p>
-          <p class="mx-2 text-primary-700 text-base font-semibold ">Description <%= @user.email %></p>
-          <p class="mx-2 text-primary-700 text-base font-semibold ">Details</p>
-
+          <p class=" text-primary-700 text-2xl font-bold "><%= watched.movie.movie_name %></p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">Genre : </span><%= watched.movie.movie_genre %></p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">Director: </span><%= watched.movie.movie_director %> </p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">IMDb Rating : </span><%= watched.movie.movie_rating %> </p>
         </div>
-
       </div>
     </div>
+    <%end%>
+
+    <% @user.wish_lists.each do |wish_list| %>
+    <div class="bg-primary-400  mt-2 rounded shadow p-2">
+      <p class="mx-2 text-primary-700 text-base font-bold "><%=@user.name %> <span class="font-normal">added </span> <%= wish_list.movie.movie_name %> <span class="font-normal">to Watch List </span></p>
+      <div class="flex bg-primary-200 mt-2 py-2 rounded shadow max-w-4xl mx-auto">
+        <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-16 w-16  m-4 " ) %>
+        <div class="flex-col">
+          <p class=" text-primary-700 text-2xl font-bold "><%= wish_list.movie.movie_name %></p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">Genre : </span><%= wish_list.movie.movie_genre %></p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">Director: </span><%= wish_list.movie.movie_director %> </p>
+          <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">IMDb Rating : </span><%= wish_list.movie.movie_rating %> </p>
+        </div>
+      </div>
+    </div>
+
+
     <%end%>
   </div>
 
