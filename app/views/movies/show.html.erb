@@ -20,7 +20,17 @@
         <%end%>
         <%end%>
         <%= link_to "Recommended", root_path, class: "mt-1 btn btn-primary" %>
-        <%= link_to "Add to Watch List", root_path, class: "my-1 btn btn-primary" %>
+        <% already_in_wish = @movie.wish_lists.find{|movie| movie.user_id == current_user&.id} %>
+        <%if already_in_wish%>
+        <%= button_to   movie_wish_list_path(@movie,already_in_wish),class:"btn my-1 bg-primary-700 w-full btn-primary", method: :delete  do  %>
+        Remove from Watch List
+        <%end%>
+        <%else%>
+        <%= button_to   movie_wish_lists_path(@movie), method: :post ,class:"btn my-1 w-full bg-primary-700 btn-primary" do  %>
+        Add to Watch List
+        <%end%>
+        <%end%>
+
       </div>
     </div>
   </div>

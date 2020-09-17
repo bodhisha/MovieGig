@@ -15,7 +15,7 @@ class WatchedMoviesController < ApplicationController
     watched_movie.destroy!
     movie = watched_movie.movie
     redirect_to movie_path(movie)
-    flash.alert = "Movie removed from Watched list"
+    flash.notice = "Movie removed from Watched list"
   end
 
   private
