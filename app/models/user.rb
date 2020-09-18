@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :watched_movies, dependent: :destroy
   has_many :wish_lists, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+
 
   def self.from_omniauth(access_token)
     data = access_token.info
