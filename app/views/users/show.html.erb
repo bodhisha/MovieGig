@@ -22,6 +22,7 @@
     <% @user.watched_movies.each do |watched| %>
     <div class="bg-primary-400  mt-2 rounded shadow p-2">
       <p class="mx-2 text-primary-700 text-base font-bold "><%=@user.name %> <span class="font-normal">watched</span> <%= watched.movie.movie_name %> </p>
+      <%= link_to  movie_path(watched.movie) do%>
       <div class="flex bg-primary-200 mt-2 py-2 rounded shadow max-w-4xl mx-auto">
         <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-16 w-16  m-4 " ) %>
         <div class="flex-col">
@@ -31,12 +32,14 @@
           <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">IMDb Rating : </span><%= watched.movie.movie_rating %> </p>
         </div>
       </div>
+      <%end%>
     </div>
     <%end%>
 
     <% @user.wish_lists.each do |wish_list| %>
     <div class="bg-primary-400  mt-2 rounded shadow p-2">
       <p class="mx-2 text-primary-700 text-base font-bold "><%=@user.name %> <span class="font-normal">added </span> <%= wish_list.movie.movie_name %> <span class="font-normal">to Watch List </span></p>
+      <%= link_to  movie_path(wish_list.movie) do%>
       <div class="flex bg-primary-200 mt-2 py-2 rounded shadow max-w-4xl mx-auto">
         <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-16 w-16  m-4 " ) %>
         <div class="flex-col">
@@ -46,11 +49,8 @@
           <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">IMDb Rating : </span><%= wish_list.movie.movie_rating %> </p>
         </div>
       </div>
+      <%end%>
     </div>
-
-
     <%end%>
   </div>
-
-
 </div>
