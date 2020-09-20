@@ -2,11 +2,18 @@
   <div class="bg-primary-100">
     <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
     <div class="flex ">
+    <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar, :alt => "dp", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " %>
+      <%else%>
       <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " ) %>
+      <%end%>
       <div class="flex flex-col">
         <p class="mx-2 text-primary-700 text-2xl font-bold uppercase md:text-3xl"><%=@user.name %></p>
         <p class="mx-2 text-primary-700 text-base font-semibold ">Mail : <%= @user.email %></p>
       </div>
+      <a href="<%= edit_user_path(current_user) %>" class="m-2">
+            <button class=" btn btn-primary "> Edit Profile</button>
+        </a>
     </div>
   </div>
   <div class="flex w-full justify-between mt-4">
@@ -24,7 +31,11 @@
       <p class="mx-2 text-primary-700 text-base font-bold "><%=@user.name %> <span class="font-normal">watched</span> <%= watched.movie.movie_name %> </p>
       <%= link_to  movie_path(watched.movie) do%>
       <div class="flex bg-primary-200 mt-2 py-2 rounded shadow max-w-4xl mx-auto">
+      <% if watched.movie.display_pic.attached? %>
+              <%= image_tag watched.movie.display_pic, :alt => "dp", class:"rounded-full bg-contain h-16 w-16  m-4 " %>
+      <%else%>
         <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-16 w-16  m-4 " ) %>
+        <%end%>
         <div class="flex-col">
           <p class=" text-primary-700 text-2xl font-bold "><%= watched.movie.movie_name %></p>
           <p class="mt-1 text-primary-700 text-base font-bold "> <span class="font-normal">Genre : </span><%= watched.movie.movie_genre %></p>

@@ -1,15 +1,17 @@
 <div class="max-w-5xl ">
   <div class="bg-primary-100">
   <% if @movie.cover_pic.attached? %>
-              <%= image_tag @movie.cover_pic, :alt => "cover", class:" w-full h-64 bg-cover bg-center" %>
-      <%else%>
-    <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
-            <%end%>
-
+      <%= image_tag @movie.cover_pic, :alt => "cover", class:" w-full h-64 bg-cover bg-center" %>
+  <%else%>
+      <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
+  <%end%>
     <div class="flex justify-between">
       <div class="flex ">
-      
+      <% if @movie.display_pic.attached? %>
+          <%= image_tag @movie.display_pic, :alt => "cover", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " %>
+      <%else%>
         <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " ) %>
+      <%end%>
         <div class="flex flex-col">
           <p class="mx-2 text-primary-700 text-2xl font-bold uppercase md:text-3xl"><%=@movie.movie_name %></p>
           <p class="mx-2 text-primary-700 text-base font-semibold ">Genre : <%= @movie.movie_genre %></p>
