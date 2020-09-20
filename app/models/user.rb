@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :wish_lists, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
+  has_one_attached :cover, dependent: :destroy
+
 
 
   def self.from_omniauth(access_token)

@@ -1,6 +1,10 @@
 <div class="max-w-5xl ">
   <div class="bg-primary-100">
+  <% if @user.cover.attached? %>
+              <%= image_tag @user.cover, :alt => "dp", class:"w-full h-64 bg-cover bg-center" %>
+      <%else%>
     <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
+    <%end%>
     <div class="flex ">
     <% if @user.avatar.attached? %>
               <%= image_tag @user.avatar, :alt => "dp", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " %>
