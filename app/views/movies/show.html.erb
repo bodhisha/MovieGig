@@ -16,29 +16,30 @@
           <p class="mx-2 text-primary-700 text-2xl font-bold uppercase md:text-3xl"><%=@movie.movie_name %></p>
           <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Genre : </span> <%= @movie.movie_genre %></p>
           <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Director : </span><%= @movie.movie_director %></p>
-
+          <%if @movie.overview?%>
           <div class="mt-2">
             <p class="mx-2 text-primary-700 text-base font-semibold ">Overview</p>
 
-            <p class="mx-1 text-primary-700 bg-primary-50 p-2  italic tracking-wide rounded shadow-sm text-xs font-semibold text-justify ">Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could esca</p>
-
+            <p class="mx-1 text-primary-700 bg-primary-50 p-2  italic tracking-wide rounded shadow-sm text-xs font-semibold text-justify ">
+              <%= @movie.overview %></p>
           </div>
+          <%end%>
         </div>
       </div>
 
-      <div class="flex flex-col justify-around mr-4 p-1">
+      <div class="flex flex-col justify-center mr-4 p-1">
 
         <% already_watched = @movie.watched_movies.find{|watched| watched.user_id == current_user&.id} %>
         <%if already_watched%>
-        <%= button_to   movie_watched_movie_path(@movie,already_watched),class:"btn bg-primary-700 w-full btn-primary", method: :delete  do  %>
+        <%= button_to   movie_watched_movie_path(@movie,already_watched),class:"my-1 btn bg-primary-700 w-full btn-primary", method: :delete  do  %>
         Remove from Watched
         <%end%>
         <%else%>
-        <%= button_to   movie_watched_movies_path(@movie), method: :post ,class:"btn w-full bg-primary-700 btn-primary" do  %>
+        <%= button_to   movie_watched_movies_path(@movie), method: :post ,class:"my-1 btn w-full bg-primary-700 btn-primary" do  %>
         Watched
         <%end%>
         <%end%>
-        <%= link_to "Recommended", root_path, class: "mt-1 btn btn-primary" %>
+        <%= link_to "Recommended", root_path, class: "my-1 btn btn-primary" %>
         <% already_in_wish = @movie.wish_lists.find{|movie| movie.user_id == current_user&.id} %>
         <%if already_in_wish%>
         <%= button_to   movie_wish_list_path(@movie,already_in_wish),class:"btn my-1 bg-primary-700 w-full btn-primary", method: :delete  do  %>

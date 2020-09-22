@@ -5,7 +5,7 @@ ActiveAdmin.register Movie do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :movie_name, :movie_genre, :movie_director, :movie_rating, :cover_pic, :display_pic
+  permit_params :movie_name, :movie_genre, :movie_director, :movie_rating, :overview, :cover_pic, :display_pic
 
   show do
     attributes_table do
@@ -13,13 +13,17 @@ ActiveAdmin.register Movie do
       row :movie_genre
       row :movie_director
       row :movie_rating
+      row :overview
       row :cover_pic do |ad|
-        image_tag url_for(ad.cover_pic)
+        if ad.cover_pic.attached?
+          image_tag url_for(ad.cover_pic)
+        end
       end
       row :display_pic do |dp|
-        image_tag url_for(dp.display_pic)
-
-    end
+        if dp.display_pic.attached?
+          image_tag url_for(dp.display_pic)
+        end
+      end
     end
   end
 
@@ -29,6 +33,7 @@ ActiveAdmin.register Movie do
       f.input :movie_genre
       f.input :movie_director
       f.input :movie_rating
+      f.input :overview
       f.input :cover_pic, as: :file
       f.input :display_pic, as: :file
     end
