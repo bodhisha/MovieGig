@@ -1,4 +1,14 @@
-<% if user_signed_in? %>
-<div class="btn btn-primary"><%=current_user.email%></div>
+<div class="w-full flex flex-col  ">
 
-<% end %>
+  <p class="mx-2 text-primary-700 text-lg font-bold md:text-xl"> Movies</p>
+  <div class="flex">
+    <% @movies.each do |movie| %>
+    <% if movie.display_pic.attached? %>
+    <%= image_tag movie.display_pic, :alt => "cover", class:" bg-contain h-32 w-32 m-4 " %>
+    <%else%>
+    <%= image_tag("movie/rio1.jpg", :alt => "DP", class:" bg-contain h-32 w-32  m-4 " ) %>
+    <%end%>
+
+    <%end%>
+  </div>
+</div>

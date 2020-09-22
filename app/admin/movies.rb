@@ -17,7 +17,7 @@ ActiveAdmin.register Movie do
         image_tag url_for(ad.cover_pic)
       end
       row :display_pic do |dp|
-        image_tag url_for(dp.cover_pic)
+        image_tag url_for(dp.display_pic)
 
     end
     end
