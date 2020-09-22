@@ -77,8 +77,11 @@
           <div class="flex justify-between">
             <p class="text-primary-700 p-2 text-base font-semibold text-justify"><span class=" font-normal text-primary-700">Review By</span> <%= review.user.name %></p>
             <%if review.user_id == current_user&.id%>
+            <%= button_to movie_review_path(@movie,review), method: :delete, data: { confirm: 'Are you sure?' }  do %>
             <i class="fas fa-trash-alt text-primary-800 hover:text-primary-600 m-2 mx-4"></i>
             <%end%>
+            <%end%>
+
           </div>
 
           <p class="mx-1 text-primary-700 p-1 pr-4   italic tracking-wide text-sm font-semibold text-justify ">
