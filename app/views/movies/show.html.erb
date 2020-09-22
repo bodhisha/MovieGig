@@ -14,8 +14,8 @@
         <%end%>
         <div class="flex flex-col">
           <p class="mx-2 text-primary-700 text-2xl font-bold uppercase md:text-3xl"><%=@movie.movie_name %></p>
-          <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Genre : </span> <%= @movie.movie_genre %></p>
-          <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Director : </span><%= @movie.movie_director %></p>
+          <p class="mx-2 text-primary-800 text-base font-bold "><span class="font-semi-bold text-primary-700">Genre : </span> <%= @movie.movie_genre %></p>
+          <p class="mx-2 text-primary-800 text-base font-bold "><span class="font-semi-bold text-primary-700">Director : </span><%= @movie.movie_director %></p>
           <%if @movie.overview?%>
           <div class="mt-2">
             <p class="mx-2 text-primary-700 text-base font-semibold ">Overview</p>
@@ -55,26 +55,53 @@
     </div>
   </div>
   <div class="flex w-full justify-between">
-    <div class="bg-primary-400 mt-4 w-1/3">
+    <div class="bg-primary-100 mt-4 w-1/3">
       Photos
-    </div>
-    <div class="ml-4 bg-primary-400 mt-4 w-2/3">
-      About
-      <p class="mx-2 text-primary-700 text-lg font-bold "><%= @movie.watched_movies.count %> users watched <%=@movie.movie_name %> </p>
+      <p class="mx-2 text-primary-700 text-lg font-bold "><%= @movie.watched_movies.count %><%= @movie.watched_movies.count <= 1 ? " user" : "  users" %> watched <%=@movie.movie_name %> </p>
       <p class="mx-2 text-primary-700 text-lg font-bold "><%= @movie.wish_lists.count %> <%= @movie.wish_lists.count <= 1 ? "user" : "users" %> added <%=@movie.movie_name %> to watch list </p>
-    </div>
-  </div>
-  <div class="max-w-xl w-full float-right relative bg-primary-200 mt-2 shadow rounded">
-    <div class="flex w-full flex-col p-4 md:p-6">
-      <%= form_for Review.new , url: movie_reviews_path(@movie) do |f| %>
-      <%= f.text_area :review , placeholder: "Comment out your review on the moviw", class:"appearance-none block w-full bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-primary-500"%>
-      <div class="md:flex justify-between items-center">
+      <p class="mx-2 text-primary-700 text-lg font-bold ">Dummy</p>
+      <p class="mx-2 text-primary-700 text-lg font-bold ">Dummy </p>
 
-        <div class="w-1/3 mt-2 md:mt-0">
-          <%= f.submit "Add Review", class:"w-full btn btn-large btn-primary mt-2 md:mt-0"%>
+    </div>
+    <div class="ml-4 bg-primary-100 mt-4 w-2/3">
+      <p class="text-primary-700 p-2 text-lg font-bold text-justify">Reviews</p>
+      <%@movie.reviews.each do |review|%>
+
+      <div class="flex">
+        <% if review.user.avatar.attached? %>
+        <%= image_tag review.user.avatar, :alt => "dp", class:"rounded-full  h-8 w-8 my-1 ml-2" %>
+        <%else%>
+        <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full  h-8 w-8 my-1 ml-2  " ) %>
+        <%end%>
+        <div class="flex flex-col w-full">
+          <div class="flex justify-between">
+            <p class="text-primary-700 p-2 text-base font-semibold text-justify"><span class=" font-normal text-primary-700">Review By</span> <%= review.user.name %></p>
+            <%if review.user_id == current_user&.id%>
+            <i class="fas fa-trash-alt text-primary-800 hover:text-primary-600 m-2 mx-4"></i>
+            <%end%>
+          </div>
+
+          <p class="mx-1 text-primary-700 p-1 pr-4   italic tracking-wide text-sm font-semibold text-justify ">
+            "<%= review.review %>"</p>
         </div>
+
       </div>
-      <% end %>
+
+      <%end%>
     </div>
   </div>
+</div>
+<div class="max-w-xl w-full float-right bg-primary-200 mt-2 shadow rounded">
+  <div class="flex w-full flex-col p-4 md:p-6">
+    <%= form_for Review.new , url: movie_reviews_path(@movie) do |f| %>
+    <%= f.text_area :review , placeholder: "Comment out your review on the moviw", class:"appearance-none block w-full bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-primary-500"%>
+    <div class="md:flex justify-between items-center">
+
+      <div class="w-1/3 mt-2 md:mt-0">
+        <%= f.submit "Add Review", class:"w-full btn btn-large btn-primary mt-2 md:mt-0"%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
 </div>
