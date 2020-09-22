@@ -1,24 +1,32 @@
 <div class="max-w-5xl ">
   <div class="bg-primary-100">
-  <% if @movie.cover_pic.attached? %>
-      <%= image_tag @movie.cover_pic, :alt => "cover", class:" w-full h-64 bg-cover bg-center" %>
-  <%else%>
-      <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
-  <%end%>
+    <% if @movie.cover_pic.attached? %>
+    <%= image_tag @movie.cover_pic, :alt => "cover", class:" w-full h-64 bg-cover bg-center" %>
+    <%else%>
+    <%= image_tag("movie/rio2.jpg", :alt => "cover", class:" w-full h-64 bg-cover bg-center" ) %>
+    <%end%>
     <div class="flex justify-between">
       <div class="flex ">
-      <% if @movie.display_pic.attached? %>
-          <%= image_tag @movie.display_pic, :alt => "cover", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " %>
-      <%else%>
-        <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-32 w-32 -mt-8 m-4 " ) %>
-      <%end%>
+        <% if @movie.display_pic.attached? %>
+        <%= image_tag @movie.display_pic, :alt => "DP", class:"rounded-full bg-contain h-64 w-64 -mt-8 m-4 " %>
+        <%else%>
+        <%= image_tag("movie/rio1.jpg", :alt => "DP", class:"rounded-full bg-contain h-64 w-64 -mt-8 m-4 " ) %>
+        <%end%>
         <div class="flex flex-col">
           <p class="mx-2 text-primary-700 text-2xl font-bold uppercase md:text-3xl"><%=@movie.movie_name %></p>
-          <p class="mx-2 text-primary-700 text-base font-semibold ">Genre : <%= @movie.movie_genre %></p>
+          <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Genre : </span> <%= @movie.movie_genre %></p>
+          <p class="mx-2 text-primary-800 text-base font-semibold "><span class=" text-primary-700">Director : </span><%= @movie.movie_director %></p>
+
+          <div class="mt-2">
+            <p class="mx-2 text-primary-700 text-base font-semibold ">Overview</p>
+
+            <p class="mx-1 text-primary-700 bg-primary-50 p-2  italic tracking-wide rounded shadow-sm text-xs font-semibold text-justify ">Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could esca</p>
+
+          </div>
         </div>
       </div>
 
-      <div class="flex flex-col mr-4 p-1">
+      <div class="flex flex-col justify-around mr-4 p-1">
 
         <% already_watched = @movie.watched_movies.find{|watched| watched.user_id == current_user&.id} %>
         <%if already_watched%>
@@ -68,5 +76,4 @@
       <% end %>
     </div>
   </div>
-
 </div>
