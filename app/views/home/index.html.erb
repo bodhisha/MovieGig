@@ -4,11 +4,42 @@
   <div class="flex">
     <% @movies.each do |movie| %>
     <% if movie.display_pic.attached? %>
-    <%= image_tag movie.display_pic, :alt => "cover", class:" bg-contain h-32 w-32 m-4 " %>
-    <%else%>
-    <%= image_tag("movie/rio1.jpg", :alt => "DP", class:" bg-contain h-32 w-32  m-4 " ) %>
+    <%= link_to  movie_path(movie) do %>
+    <div class="m-4">
+      <%= image_tag movie.display_pic, :alt => "cover", class:" bg-contain h-48 w-48 " %>
+      <p class="text-sm text-primary-800 font-bold text-center"><%=movie.movie_name%></p>
+    </div>
     <%end%>
+    <%else%>
+    <div class="m-4">
+      <%= link_to  movie_path(movie) do %>
+      <%= image_tag("movie/rio1.jpg", :alt => "DP", class:" bg-contain h-48 w-48 " ) %>
+      <p class="text-sm text-primary-800 font-bold text-center"><%=movie.movie_name%></p>
+    </div>
+    <%end%>
+    <%end%>
+    <%end%>
+  </div>
 
+
+  <p class="mx-2 text-primary-700 text-lg font-bold md:text-xl">Most Watched Movies</p>
+  <div class="flex">
+    <% @sorted_most_watched_movies.each do |movie| %>
+    <% if movie.display_pic.attached? %>
+    <%= link_to  movie_path(movie) do %>
+    <div class="m-4">
+      <%= image_tag movie.display_pic, :alt => "cover", class:" bg-contain h-48 w-48 " %>
+      <p class="text-sm text-primary-800 font-bold text-center"><%=movie.movie_name%></p>
+    </div>
+    <%end%>
+    <%else%>
+    <div class="m-4">
+      <%= link_to  movie_path(movie) do %>
+      <%= image_tag("movie/rio1.jpg", :alt => "DP", class:" bg-contain h-48 w-48 " ) %>
+      <p class="text-sm text-primary-800 font-bold text-center"><%=movie.movie_name%></p>
+    </div>
+    <%end%>
+    <%end%>
     <%end%>
   </div>
 </div>
