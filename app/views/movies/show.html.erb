@@ -39,7 +39,18 @@
         Watched
         <%end%>
         <%end%>
-        <%= link_to "Recommended", root_path, class: "my-1 btn btn-primary" %>
+
+        <% already_in_recommended = @movie.recommended_movies.find{|recommended| recommended.user_id == current_user&.id} %>
+        <%if already_in_recommended%>
+        <%= button_to   movie_recommended_movie_path(@movie,already_in_recommended),class:"my-1 btn bg-primary-700 w-full btn-primary", method: :delete  do  %>
+        Remove from Recommended
+        <%end%>
+        <%else%>
+        <%= button_to   movie_recommended_movies_path(@movie), method: :post ,class:"my-1 btn w-full bg-primary-700 btn-primary" do  %>
+        Recommended
+        <%end%>
+        <%end%>
+
         <% already_in_wish = @movie.wish_lists.find{|movie| movie.user_id == current_user&.id} %>
         <%if already_in_wish%>
         <%= button_to   movie_wish_list_path(@movie,already_in_wish),class:"btn my-1 bg-primary-700 w-full btn-primary", method: :delete  do  %>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:show] do
     resources :watched_movies
     resources :wish_lists
+    resources :recommended_movies
     resources :reviews
   end
   resources :users, only: [:show, :edit, :update]

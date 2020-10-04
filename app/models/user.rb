@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :watched_movies, dependent: :destroy
   has_many :wish_lists, dependent: :destroy
+  has_many :recommended_movies, dependent: :destroy
+
   has_many :reviews, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_one_attached :cover, dependent: :destroy
