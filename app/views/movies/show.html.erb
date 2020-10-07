@@ -76,6 +76,13 @@
     </div>
     <div class="ml-4 bg-primary-100 mt-4 w-2/3">
       <p class="text-primary-700 p-2 text-lg font-bold text-justify">Reviews</p>
+
+      <%if !@movie.reviews.exists?%>
+      <p class="mx-4 text-primary-700 p-1 italic tracking-wide text-sm font-semibold text-justify ">
+        No Reviews so far! Post the first review below!</p>
+
+
+      <%end%>
       <%@movie.reviews.each do |review|%>
 
       <div class="flex">
