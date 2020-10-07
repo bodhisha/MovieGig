@@ -112,13 +112,12 @@
     </div>
   </div>
 </div>
-<div class="max-w-xl w-full float-right bg-primary-200 mt-2 shadow rounded">
-  <div class="flex w-full flex-col p-4 md:p-6">
+<div class="mt-2 flex flex-row-reverse">
+  <div class="w-2/3 p-2 bg-primary-200 shadow rounded">
     <%= form_for Review.new , url: movie_reviews_path(@movie) do |f| %>
     <%= f.text_area :review , placeholder: "Comment out your review on the moviw", class:"appearance-none block w-full bg-white text-primary-900 font-normal border border-primary-400 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-primary-500"%>
     <div class="md:flex justify-between items-center">
-
-      <div class="w-1/3 mt-2 md:mt-0">
+      <div class="w-1/3 mt-2 md:mt-0  ">
         <%= f.submit "Add Review", class:"w-full btn btn-large btn-primary mt-2 md:mt-0"%>
       </div>
     </div>
