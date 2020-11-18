@@ -1,6 +1,9 @@
 <div class="w-full flex flex-col  ">
 
   <p class="mx-2 text-primary-700 text-lg font-bold md:text-xl"> Movies</p>
+  <% if !@movies.exists?%>
+  <p class="mx-2 text-primary-700 text-lg mx-auto font-semi-bold md:text-4xl">No Movies Found!</p>
+  <%end%>
   <div class="flex">
     <% @movies.each do |movie| %>
     <% if movie.display_pic.attached? %>
@@ -21,8 +24,9 @@
     <%end%>
   </div>
 
-
+  <% if @movies.exists?%>
   <p class="mx-2 text-primary-700 text-lg font-bold md:text-xl">Most Watched Movies</p>
+  <%end%>
   <div class="flex">
     <% @sorted_most_watched_movies.each do |movie| %>
     <% if movie.display_pic.attached? %>
